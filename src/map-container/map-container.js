@@ -16,11 +16,11 @@ export class MapContainer extends Component {
 		axios({
 			method: 'post',
 			url: `http://localhost:${apiServerPort}/v1/geolocate/me`
-		}).then(data => {
-			console.log(data)
+		}).then(location => {
+			console.log(location)
 			this.setState({
-				latitude: data.latitude,
-				longtitude: data.longtitude
+				latitude: location.data.latitude,
+				longtitude: location.data.longtitude
 			})
 		}).catch(err => {
 			console.log(err)
@@ -52,6 +52,7 @@ export class MapContainer extends Component {
 }
  
 export default GoogleApiWrapper({
-  apiKey: serverKey
+  apiKey: serverKey,
+  version: '3.29'
 })(MapContainer)
 
